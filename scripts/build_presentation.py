@@ -186,34 +186,40 @@ a { color: #60a5fa; text-decoration: none; }
 /* --- HERO BAND (metrics, no H1) ------------------------------------- */
 
 .slide.band { padding-top: 28mm; }
-.slide.band > p:first-of-type {
+.slide.band .band-kicker {
     text-transform: uppercase;
-    letter-spacing: 3.5pt;
-    font-size: 9.5pt;
+    letter-spacing: 4pt;
+    font-size: 10pt;
+    font-weight: 600;
     color: #60a5fa;
-    margin: 0 0 6mm;
+    margin: 0 0 14mm;
 }
-.slide.band ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 18mm;
-    row-gap: 9mm;
+.slide.band .metrics-grid {
+    column-count: 2;
+    column-gap: 20mm;
 }
-.slide.band ul li {
-    border-left: 1.4pt solid #f59e0b;
-    padding: 1mm 0 1mm 6mm;
-}
-.slide.band ul li strong {
+.slide.band .metric-cell {
+    border-left: 1.6pt solid #f59e0b;
+    padding: 2mm 0 2mm 8mm;
+    margin-bottom: 12mm;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
     display: block;
-    font-size: 26pt;
+}
+.slide.band .metric-cell:last-child { margin-bottom: 0; }
+.slide.band .metric-value {
+    font-size: 32pt;
     font-weight: 700;
     color: #e6edf3;
-    letter-spacing: -0.5pt;
-    line-height: 1.05;
-    margin-bottom: 1.5mm;
+    letter-spacing: -0.8pt;
+    line-height: 1.02;
+    margin-bottom: 2.5mm;
+}
+.slide.band .metric-label {
+    font-size: 11.5pt;
+    color: #cbd5e1;
+    line-height: 1.4;
 }
 
 /* --- CLOSING --------------------------------------------------------- */

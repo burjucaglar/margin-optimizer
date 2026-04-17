@@ -28,11 +28,14 @@ paginate: true
 </figure>
 
 ---
-**Öne Çıkan Metrikler**
-- **$5.2 Milyar** | Global Dinamik Fiyatlandırma Pazarı
-- **10K+** | Gecelik Rezervasyon (PNR) Tarama Kapasitesi
-- **+%1-5** | Satılmış Tur Başına Net Karda Marjinal Artış
-- **%100** | İnsan Onaylı Döngü (Güvenlik Önceliği)
+
+<div class="band-kicker">Öne Çıkan Metrikler · Pazar &amp; Kapasite</div>
+<div class="metrics-grid">
+<div class="metric-cell"><div class="metric-value">$5.2 Milyar</div><div class="metric-label">Global dinamik fiyatlandırma teknoloji pazarı.</div></div>
+<div class="metric-cell"><div class="metric-value">10K+</div><div class="metric-label">Acente başına gecelik PNR tarama kapasitesi.</div></div>
+<div class="metric-cell"><div class="metric-value">+%1-5</div><div class="metric-label">Aktif bilet başına marjinal net kar artışı.</div></div>
+<div class="metric-cell"><div class="metric-value">%100</div><div class="metric-label">İnsan onaylı döngü — sessiz yazım yok, sıfır risk.</div></div>
+</div>
 
 ---
 

@@ -28,11 +28,14 @@ paginate: true
 </figure>
 
 ---
-**Key Metrics**
-- **$5.2B** | Global Dynamic Pricing Tech Market
-- **10K+** | Nightly PNR Scan Capacity
-- **+1-5%** | Marginal Net Profit Increase Per Booking
-- **100%** | Human-In-The-Loop Safety Record
+
+<div class="band-kicker">Key Metrics · Market &amp; Capacity</div>
+<div class="metrics-grid">
+<div class="metric-cell"><div class="metric-value">$5.2B</div><div class="metric-label">Global dynamic pricing tech market size.</div></div>
+<div class="metric-cell"><div class="metric-value">10K+</div><div class="metric-label">Nightly PNR scan capacity per operator.</div></div>
+<div class="metric-cell"><div class="metric-value">+1-5%</div><div class="metric-label">Marginal net profit lift per active booking.</div></div>
+<div class="metric-cell"><div class="metric-value">100%</div><div class="metric-label">Human-in-the-loop safety record — zero silent writes.</div></div>
+</div>
 
 ---
 
