@@ -23,7 +23,7 @@ paginate: true
 **01 | Maliyet Fırsatı (Kar Boşluğu)**
 Bekleyen biletlerin içinden gizli kar oranlarını çekip çıkarmak.
 **02 | Çözüm Yaşam Döngüsü**
-Otonom ajanın gece 03:00'te aktifleşip yaptığı tarama operasyonu.
+Otonom ajanın gece 02:00'de (Europe/Berlin) aktifleşip yaptığı tarama operasyonu.
 **03 | Altyapı & Ölçek**
 10.000 bileti Traffics API'yi çökertmeden Amazon SQS ile kuyruklamak.
 **04 | İnsan Onay Döngüsü (HITL)**
@@ -36,12 +36,12 @@ Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.
 # M A L İ Y E T  F I R S A T I
 **Verimsizlikten Para Yaratmak**
 
-**Senaryo:** Bugün satılan bir paket turun seferine 3 ay vardır. Uçağın bugünkü alış maliyeti $1000'dır.
-**Fırsat:** 2. ayda, rakip bir havayolu veya aynı hava yolu, tıpatıp aynı saatte, aynı valiz hakkındaki uçağı talepten dolayı $800'a düşürebilir. İnsanlar her gece 50.000 PNR arayamayacağı için bu fırsatlar kaçar.
-**Çözüm:** MarginOptimizer bu devasa aramayı AI gücüyle ücretsiz yapar.
+**Senaryo:** Bugün satılan bir paket turun seferine 3 ay vardır. Uçağın bugünkü alış maliyeti 1.000 €'dur.
+**Fırsat:** 2. ayda, rakip bir havayolu veya aynı hava yolu, tıpatıp aynı saatte, aynı valiz hakkındaki uçağı talepten dolayı 800 €'ya düşürebilir. İnsan eliyle her gece 10.000 PNR tek tek taranamayacağı için bu fırsatlar masada kalır.
+**Çözüm:** MarginOptimizer bu devasa aramayı saatte bir Haiku-worker ile otonom yapar.
 
 **Yatırım Getirisi (ROI):**
-Yılda satılan 50.000 biletin sadece %10'undan $20 dolar daha ucuz alternatif bulunması = **$100.000 saf ekstra ciro** demektir.
+Yılda satılan ~50.000 biletin %2'sinde 40 €'luk alternatif bulunması = yılda **≥ 40.000 €** saf geri kazanılmış marj.
 
 ---
 
@@ -50,11 +50,11 @@ Yılda satılan 50.000 biletin sadece %10'undan $20 dolar daha ucuz alternatif b
 
 | **Servis** | **Mimarideki Görevi** |
 | :--- | :--- |
-| **AWS EventBridge** | Sistemi her gece saat 03:00'te uykudan uyandıran saat (Cron) |
-| **Amazon SQS** | 10.000 PNR'i Traffics API DDoS yemeden sıraya sokan kuyruk |
-| **Lambda (Worker)** | Kuyruktan aldığı her bir yolcu için otonom Strands Ajanı uyandıran ünite |
-| **API Gateway** | Slack üzerinden gelen "Değişimi Onayla" webhook sinyalini karşılayan port |
-| **RDS Data** | Kurtarılan/Bulunan her marjı yönetim raporları için veritabanına loglama |
+| **AWS EventBridge** | Her gece 02:00'de (Europe/Berlin) sistemi uyandıran cron |
+| **Amazon SQS** | 10.000 PNR'i DLQ ile Traffics API'yi boğmadan sıraya sokan kuyruk |
+| **Lambda (Worker)** | Kuyruktan aldığı her PNR için Strands + Haiku 4.5 ajanı çalıştıran ünite |
+| **API Gateway** | Slack'ten gelen "Onayla" webhook'unu HMAC doğrulamasıyla karşılayan port |
+| **Aurora Postgres** | `yield_events` tablosuna her onaylı marjı yazar, QuickSight besler |
 
 ---
 
@@ -77,8 +77,8 @@ Yılda satılan 50.000 biletin sadece %10'undan $20 dolar daha ucuz alternatif b
 **Sıfır İstenmeyen Hata Riski**
 
 Sistem bir değişime karar verene dek %100 otonom çalışır. İşlem kısmında insan devreye girer:
-1. AI, ID:4410 numaralı bilette $80'lık kar bulur.
-2. Slack'e mesaj atar: *"Uçuşu SunExpress ile revize edip $80 ekstra para kazanalım mı?"*
+1. AI, ID:4410 numaralı bilette 80 €'luk kar bulur.
+2. Slack'e mesaj atar: *"Uçuşu SunExpress ile revize edip 80 € ekstra kazanalım mı?"*
 3. Operatör **[ONAYLA]** butonuna basar.
 4. Çıkan Webhook, zekayı (LLM) bypass eder ve sıfır riskle Traffics `/bookings/modify` komutunu işletir.
 5. Mutlak finansal güvenle bilet değiştirilir.

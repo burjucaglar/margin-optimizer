@@ -23,7 +23,7 @@ paginate: true
 **01 | The Cost Factor**
 Extracting invisible profit from waiting tickets.
 **02 | The Solution Lifecycle**
-How the autonomous agent operates at 03:00 AM.
+How the autonomous agent operates at 02:00 (Europe/Berlin).
 **03 | Infrastructure & Scaling**
 Processing thousands of items without triggering API bans (SQS).
 **04 | The Approval Loop (HITL)**
@@ -36,12 +36,12 @@ From local validation to cloud dashboard deployment.
 # T H E  C O S T  F A C T O R
 **Creating Money From Inefficiency**
 
-**The Scenario:** A package tour is sold today for departure in 3 months. The flight cost locked today is $1000. 
-**The Opportunity:** In month 2, a competitor airline drops identical flights (same luggage, similar time) to $800. Agencies miss this because humans cannot manually check 50,000 PNRs every day.
-**The Solution:** MarginOptimizer entirely automates this tracking using AI.
+**The Scenario:** A package tour is sold today, departure in 3 months. The locked-in flight cost is €1,000.
+**The Opportunity:** In month 2 a competitor (or the same airline) drops an identical flight — same baggage, same window — to €800. Agencies miss it because a human cannot scan 10,000 PNRs every night.
+**The Solution:** MarginOptimizer runs one Haiku-class worker per PNR, autonomously, every night.
 
 **The ROI:**
-Discovering just a $20 saving on 10% of 50,000 yearly bookings = **$100,000 pure Net Profit**. 
+~50,000 yearly bookings × 2% profitable-hit rate × €40 average saving = **≥ €40,000 / year** in pure recovered margin.
 
 ---
 
@@ -50,11 +50,11 @@ Discovering just a $20 saving on 10% of 50,000 yearly bookings = **$100,000 pure
 
 | **Service** | **Function in the Architecture** |
 | :--- | :--- |
-| **AWS EventBridge** | Cron trigger launching the scan at 03:00 AM nightly |
-| **Amazon SQS** | Queues 10,000 Bookings, protecting Traffics API from DDoS |
-| **Lambda (Worker)** | Spawns Strands Agent to process singular queue items |
-| **API Gateway** | Listens for human "Approve" clicks from Slack |
-| **DynamoDB/RDS** | Logs every detected margin to generate BI dashboards |
+| **AWS EventBridge** | Nightly cron at 02:00 Europe/Berlin kicking the ingest Lambda |
+| **Amazon SQS** | Queues 10,000 bookings with a DLQ, shielding Traffics from bursts |
+| **Lambda (Worker)** | One Strands + Haiku 4.5 agent per PNR, max 10 concurrent |
+| **API Gateway** | Receives Slack approval webhooks, HMAC-verified before routing |
+| **Aurora Postgres** | Writes every approved swap to `yield_events`; feeds QuickSight |
 
 ---
 
@@ -77,8 +77,8 @@ Discovering just a $20 saving on 10% of 50,000 yearly bookings = **$100,000 pure
 **Zero Unwanted Actions**
 
 The agent works entirely autonomously until a flight needs mutating. 
-1. The AI detects an $80 margin on Booking ID 4410.
-2. It sends a Slack notification: *"Revise flight to SunExpress to save $80?"*
+1. The AI detects an €80 margin on Booking ID 4410.
+2. It sends a Slack notification: *"Revise flight to SunExpress to recover €80?"*
 3. The human operator clicks **[APPROVE]**.
 4. An AWS Webhook bypasses AI and directly triggers Traffics `/bookings/modify`. 
 5. Absolute data safety achieved.
