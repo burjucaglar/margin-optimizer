@@ -26,12 +26,12 @@ graph TD
     end
 
     Traf <--> TrafAPI[Traffics Connector API v3<br/>connector.traffics.de]
-    Slack -->|interactive blocks| Chan[#yield-ops Slack channel]
+    Slack -->|interactive blocks| Chan["#yield-ops Slack channel"]
 
     Chan -->|Approve click| APIGW[API Gateway REST]
     APIGW --> Modify[Lambda: mo-modify<br/>non-LLM]
     Modify --> SF[Step Functions:<br/>reserve → release → confirm saga]
-    SF <-->|PATCH /bookings/{id}| TrafAPI
+    SF <-->|"PATCH /bookings/{id}"| TrafAPI
     Modify -->|write row| YE[(Aurora Postgres:<br/>yield_events)]
     YE --> QS[QuickSight Dashboard]
     YE --> SES[SES: Monday 08:00 CET<br/>weekly PDF]

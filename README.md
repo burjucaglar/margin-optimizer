@@ -59,18 +59,18 @@ Detay: [Geliştirici kurulumu](docs/5_dev_setup_tr.md) · [Güncel durum](docs/p
 
 ```mermaid
 graph TD
-    Cron[EventBridge cron 02:00 EU/Berlin] --> Ingest[Lambda: mo-ingest]
-    Ingest --> SQS[SQS: mo-pnr-queue]
-    SQS --> Worker[Lambda: mo-worker Claude Haiku]
-    Worker <--> Traf[strands-traffics /alternative_flights]
-    Worker <--> Calc[calculator]
-    Worker -->|interaktif blok| Slack[#yield-ops]
-    Slack -->|Approve| APIGW[API Gateway]
-    APIGW --> Modify[Lambda: mo-modify LLM'siz]
-    Modify --> SF[Step Functions saga]
-    SF <-->|PATCH /bookings/{id}| Traf
-    Modify --> YE[(Aurora yield_events)]
-    YE --> QS[QuickSight + haftalık PDF]
+    Cron["EventBridge cron 02:00 EU/Berlin"] --> Ingest["Lambda: mo-ingest"]
+    Ingest --> SQS["SQS: mo-pnr-queue"]
+    SQS --> Worker["Lambda: mo-worker Claude Haiku"]
+    Worker <--> Traf["strands-traffics /alternative_flights"]
+    Worker <--> Calc["calculator"]
+    Worker -->|interaktif blok| Slack["#yield-ops"]
+    Slack -->|Approve| APIGW["API Gateway"]
+    APIGW --> Modify["Lambda: mo-modify (LLM'siz)"]
+    Modify --> SF["Step Functions saga"]
+    SF <-->|"PATCH /bookings/{id}"| Traf
+    Modify --> YE[("Aurora yield_events")]
+    YE --> QS["QuickSight + haftalık PDF"]
 ```
 
 Tam mimari: [docs/2_technical_architecture_tr.md](docs/2_technical_architecture_tr.md).
