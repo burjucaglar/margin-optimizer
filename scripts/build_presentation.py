@@ -321,6 +321,37 @@ blockquote {
     color: #cbd5e1;
     font-style: italic;
 }
+
+/* --- FIGURES & SVG GRAPHICS ----------------------------------------- */
+
+figure { margin: 0; padding: 0; }
+figure svg { display: block; width: 100%; height: auto; }
+
+.slide.cover .cover-mark {
+    position: absolute;
+    right: 22mm;
+    bottom: 22mm;
+    width: 100mm;
+    margin: 0;
+    padding: 0;
+    opacity: 0.98;
+}
+
+figure.chart, figure.flow, figure.diagram {
+    margin: 4mm auto;
+    text-align: center;
+}
+figure.chart    { max-width: 230mm; }
+figure.flow     { max-width: 255mm; margin: 7mm auto 4mm; }
+figure.diagram  { max-width: 255mm; margin: 3mm auto 5mm; }
+
+/* When a band slide has a single figure, center it fully */
+.slide.band figure.chart { margin-top: 6mm; }
+
+/* Shrink tables slightly when they follow a diagram */
+.slide.section figure + table { margin-top: 2mm; font-size: 10.5pt; }
+.slide.section figure + table th { font-size: 9pt; padding: 2.4mm 5mm; }
+.slide.section figure + table td { padding: 2.2mm 5mm; }
 """
 
 
