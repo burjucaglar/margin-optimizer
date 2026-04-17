@@ -36,26 +36,23 @@ paginate: true
 
 ---
 
-# T A B L E  O F  C O N T E N T S
+# TABLE OF CONTENTS
 **What This Document Covers**
 
-**01 | The Cost Factor**
-Extracting invisible profit from waiting tickets.
-**02 | The Solution Lifecycle**
-How the autonomous agent operates at 02:00 (Europe/Berlin).
-**03 | Infrastructure & Scaling**
-Processing thousands of items without triggering API bans (SQS).
-**04 | The Approval Loop (HITL)**
-Slack Webhooks and operator-side security.
-**05 | Development Roadmap**
-From local validation to cloud dashboard deployment.
+<div class="toc">
+<div class="toc-row"><div class="toc-num">01</div><div class="toc-body"><div class="toc-title">The Cost Factor</div><div class="toc-desc">Extracting invisible profit from waiting tickets.</div></div></div>
+<div class="toc-row"><div class="toc-num">02</div><div class="toc-body"><div class="toc-title">The Solution Lifecycle</div><div class="toc-desc">How the autonomous agent operates at 02:00 (Europe/Berlin).</div></div></div>
+<div class="toc-row"><div class="toc-num">03</div><div class="toc-body"><div class="toc-title">Infrastructure &amp; Scaling</div><div class="toc-desc">Processing thousands of items without triggering API bans (SQS).</div></div></div>
+<div class="toc-row"><div class="toc-num">04</div><div class="toc-body"><div class="toc-title">The Approval Loop (HITL)</div><div class="toc-desc">Slack webhooks and operator-side security.</div></div></div>
+<div class="toc-row"><div class="toc-num">05</div><div class="toc-body"><div class="toc-title">Development Roadmap</div><div class="toc-desc">From local validation to cloud dashboard deployment.</div></div></div>
+</div>
 
 ---
 
-# T H E  C O S T  F A C T O R
+# THE COST FACTOR
 **Creating Money From Inefficiency**
 
-**The Scenario:** A package tour is sold today, departure in 3 months. The locked-in flight cost is €1,000. In month 2 a competitor drops an identical flight — same baggage, same window — to €800. Agencies miss it because no human can scan 10,000 PNRs every night.
+**The Scenario:** A €1,000 flight is locked in at booking. Two months later an identical seat — same baggage, same time window — drops to €800. No human can scan 10,000 PNRs nightly, so that €200 margin slips away.
 
 <figure class="chart chart-price">
 <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +74,7 @@ From local validation to cloud dashboard deployment.
 
 ---
 
-# S Y S T E M  A R C H I T E C T U R E
+# SYSTEM ARCHITECTURE
 **AWS Serverless High-Throughput Engine**
 
 <figure class="diagram diagram-arch">
@@ -123,7 +120,7 @@ From local validation to cloud dashboard deployment.
 
 ---
 
-# S T R A N D S  T O O L I N G
+# STRANDS TOOLING
 **The Margin Finders**
 
 - **`use_traffics`** ▸ `/offers/{code}/alternativeFlights`
@@ -135,7 +132,7 @@ From local validation to cloud dashboard deployment.
 
 ---
 
-# T H E  A P P R O V A L  L O O P
+# THE APPROVAL LOOP
 **Zero Unwanted Actions**
 
 <figure class="flow flow-approval">
@@ -168,7 +165,7 @@ The agent runs fully autonomous up to step 2. At step 4 the Webhook **bypasses t
 
 ---
 
-# I N V E S T M E N T  &  R O A D M A P
+# INVESTMENT & ROADMAP
 **Execution Strategy**
 
 <figure class="chart chart-timeline">
@@ -190,10 +187,12 @@ The agent runs fully autonomous up to step 2. At step 4 the Webhook **bypasses t
 </svg>
 </figure>
 
-**01 · Validation (0-1 mo)** — Prove the prompt logic isolates profit perfectly, locally.
-**02 · Cloud Farm (1-2 mo)** — Deploy AWS SQS. Tune rate-limit handling for 429s.
-**03 · Operational Link (2-3 mo)** — Slack Webhooks + direct mutation scripts.
-**04 · Big Data Returns (4+ mo)** — Amazon QuickSight "Yield Dashboards" for C-level.
+<div class="phases">
+<div class="phase-row"><div class="phase-num">01 · VALIDATION</div><div class="phase-desc"><span class="phase-time">0-1 mo</span> Prove the prompt logic isolates profit perfectly, locally.</div></div>
+<div class="phase-row"><div class="phase-num">02 · CLOUD FARM</div><div class="phase-desc"><span class="phase-time">1-2 mo</span> Deploy AWS SQS. Tune rate-limit handling for 429s.</div></div>
+<div class="phase-row accent"><div class="phase-num">03 · OPERATIONAL</div><div class="phase-desc"><span class="phase-time">2-3 mo</span> Slack webhooks + direct mutation scripts.</div></div>
+<div class="phase-row done"><div class="phase-num">04 · BIG DATA</div><div class="phase-desc"><span class="phase-time">4+ mo</span> Amazon QuickSight "Yield Dashboards" for C-level.</div></div>
+</div>
 
 ---
 

@@ -110,12 +110,12 @@ a { color: #60a5fa; text-decoration: none; }
 /* --- SECTION (content) SLIDES --------------------------------------- */
 
 .slide.section h1 {
-    font-size: 26pt;
+    font-size: 22pt;
     font-weight: 700;
-    letter-spacing: 1.8pt;
+    letter-spacing: 5.5pt;
     color: #e6edf3;
     margin: 0 0 1mm;
-    padding: 0 0 3.5mm;
+    padding: 0 0 4mm;
     border-bottom: 0.4pt solid #1f2933;
     position: relative;
 }
@@ -324,34 +324,119 @@ blockquote {
 
 /* --- FIGURES & SVG GRAPHICS ----------------------------------------- */
 
-figure { margin: 0; padding: 0; }
-figure svg { display: block; width: 100%; height: auto; }
+figure { margin: 0; padding: 0; text-align: center; }
+
+.slide.cover h1,
+.slide.cover h2,
+.slide.cover h3 { max-width: 155mm; }
 
 .slide.cover .cover-mark {
     position: absolute;
-    right: 22mm;
-    bottom: 22mm;
-    width: 100mm;
+    right: 24mm;
+    top: 50mm;
+    bottom: auto;
+    width: 95mm;
     margin: 0;
     padding: 0;
-    opacity: 0.98;
 }
+.slide.cover .cover-mark svg { display: block; width: 100%; height: auto; }
 
-figure.chart, figure.flow, figure.diagram {
-    margin: 4mm auto;
-    text-align: center;
+figure.chart, figure.flow, figure.diagram { margin: 4mm auto; }
+figure.chart svg,
+figure.flow svg,
+figure.diagram svg {
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    height: 48mm;
 }
-figure.chart    { max-width: 230mm; }
-figure.flow     { max-width: 255mm; margin: 7mm auto 4mm; }
-figure.diagram  { max-width: 255mm; margin: 3mm auto 5mm; }
-
-/* When a band slide has a single figure, center it fully */
-.slide.band figure.chart { margin-top: 6mm; }
+figure.chart-price svg    { height: 52mm; }
+figure.chart-timeline svg { height: 44mm; }
+figure.flow-approval svg  { height: 32mm; }
+figure.diagram-arch svg   { height: 36mm; }
 
 /* Shrink tables slightly when they follow a diagram */
 .slide.section figure + table { margin-top: 2mm; font-size: 10.5pt; }
 .slide.section figure + table th { font-size: 9pt; padding: 2.4mm 5mm; }
 .slide.section figure + table td { padding: 2.2mm 5mm; }
+
+/* --- TABLE OF CONTENTS --------------------------------------------- */
+
+.toc { margin-top: 4mm; }
+.toc-row {
+    display: flex;
+    align-items: center;
+    gap: 10mm;
+    padding: 1.5mm 0 1.5mm 8mm;
+    border-left: 1.4pt solid #f59e0b;
+    margin-bottom: 2mm;
+    break-inside: avoid;
+}
+.toc-row:last-child { margin-bottom: 0; }
+.toc-num {
+    flex: 0 0 24mm;
+    font-family: "JetBrains Mono", Menlo, monospace;
+    font-size: 22pt;
+    font-weight: 700;
+    color: #f59e0b;
+    letter-spacing: 1pt;
+    line-height: 1;
+}
+.toc-body { flex: 1; }
+.toc-title {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #e6edf3;
+    display: block;
+    line-height: 1.2;
+}
+.toc-desc {
+    font-size: 10pt;
+    color: #94a3b8;
+    display: block;
+    margin-top: 1mm;
+    line-height: 1.35;
+}
+
+/* --- PHASE LIST (roadmap) ------------------------------------------ */
+
+.phases { margin-top: 3mm; }
+.phase-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+    padding: 1mm 0 1mm 6mm;
+    border-left: 1.2pt solid #60a5fa;
+    margin-bottom: 1.5mm;
+    break-inside: avoid;
+}
+.phase-row:last-child { margin-bottom: 0; }
+.phase-row.accent { border-left-color: #f59e0b; }
+.phase-row.done   { border-left-color: #84cc16; }
+.phase-num {
+    flex: 0 0 42mm;
+    font-family: "JetBrains Mono", Menlo, monospace;
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: #e6edf3;
+    letter-spacing: 0.6pt;
+}
+.phase-desc {
+    flex: 1;
+    font-size: 11pt;
+    color: #cbd5e1;
+    line-height: 1.4;
+}
+.phase-time {
+    display: inline-block;
+    min-width: 14mm;
+    margin-right: 3mm;
+    font-family: "JetBrains Mono", Menlo, monospace;
+    font-size: 9pt;
+    font-weight: 500;
+    color: #94a3b8;
+    letter-spacing: 0.4pt;
+}
 """
 
 

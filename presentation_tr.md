@@ -36,26 +36,23 @@ paginate: true
 
 ---
 
-# İ Ç İ N D E K İ L E R
+# İÇİNDEKİLER
 **Bu Sunumda Neler Var?**
 
-**01 | Maliyet Fırsatı (Kar Boşluğu)**
-Bekleyen biletlerin içinden gizli kar oranlarını çekip çıkarmak.
-**02 | Çözüm Yaşam Döngüsü**
-Otonom ajanın gece 02:00'de (Europe/Berlin) aktifleşip yaptığı tarama operasyonu.
-**03 | Altyapı & Ölçek**
-10.000 bileti Traffics API'yi çökertmeden Amazon SQS ile kuyruklamak.
-**04 | İnsan Onay Döngüsü (HITL)**
-Slack etkileşimleri ve acente tarafında hiçbir hataya yer bırakmayan güvenlik duvarı.
-**05 | Geliştirme Yol Haritası**
-Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.
+<div class="toc">
+<div class="toc-row"><div class="toc-num">01</div><div class="toc-body"><div class="toc-title">Maliyet Fırsatı (Kar Boşluğu)</div><div class="toc-desc">Bekleyen biletlerin içinden gizli kar oranlarını çekip çıkarmak.</div></div></div>
+<div class="toc-row"><div class="toc-num">02</div><div class="toc-body"><div class="toc-title">Çözüm Yaşam Döngüsü</div><div class="toc-desc">Otonom ajanın gece 02:00'de (Europe/Berlin) aktifleşip yaptığı tarama operasyonu.</div></div></div>
+<div class="toc-row"><div class="toc-num">03</div><div class="toc-body"><div class="toc-title">Altyapı &amp; Ölçek</div><div class="toc-desc">10.000 bileti Traffics API'yi çökertmeden Amazon SQS ile kuyruklamak.</div></div></div>
+<div class="toc-row"><div class="toc-num">04</div><div class="toc-body"><div class="toc-title">İnsan Onay Döngüsü (HITL)</div><div class="toc-desc">Slack etkileşimleri ve acentede hataya yer bırakmayan güvenlik duvarı.</div></div></div>
+<div class="toc-row"><div class="toc-num">05</div><div class="toc-body"><div class="toc-title">Geliştirme Yol Haritası</div><div class="toc-desc">Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.</div></div></div>
+</div>
 
 ---
 
-# M A L İ Y E T  F I R S A T I
+# MALİYET FIRSATI
 **Verimsizlikten Para Yaratmak**
 
-**Senaryo:** Bugün satılan bir paket turun seferine 3 ay vardır. Uçağın bugünkü alış maliyeti 1.000 €'dur. 2. ayda rakip havayolu veya aynı hava yolu, tıpatıp aynı saatte, aynı valiz hakkıyla uçağı talepten dolayı 800 €'ya düşürebilir. İnsan eliyle her gece 10.000 PNR tek tek taranamayacağı için bu fırsatlar masada kalır.
+**Senaryo:** Bir paket turun satışında 1.000 €'luk uçak maliyeti sabitlenir. 2. ayda tıpatıp aynı koltuk (aynı valiz, aynı saat) 800 €'ya düşer. Hiçbir insan 10.000 PNR'i gece gece tarayamaz — o 200 €'luk marj masada kalır.
 
 <figure class="chart chart-price">
 <svg viewBox="0 0 560 170" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +74,7 @@ Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.
 
 ---
 
-# S İ S T E M  M İ M A R İ S İ
+# SİSTEM MİMARİSİ
 **AWS Serverless: Yüksek Hacimli İşlem Motoru**
 
 <figure class="diagram diagram-arch">
@@ -123,7 +120,7 @@ Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.
 
 ---
 
-# S T R A N D S  A R A Ç L A R I
+# STRANDS ARAÇLARI
 **Marj Avcıları**
 
 - **`use_traffics`** ▸ `/offers/{code}/alternativeFlights`
@@ -135,7 +132,7 @@ Lokal testlerden Amazon QuickSight analiz panolarına uzanan takvim.
 
 ---
 
-# O N A Y  D Ö N G Ü S Ü
+# ONAY DÖNGÜSÜ
 **Sıfır İstenmeyen Hata Riski**
 
 <figure class="flow flow-approval">
@@ -168,7 +165,7 @@ Sistem 2. adıma kadar tamamen otonomdur. 4. adımda Webhook **LLM'i tamamen byp
 
 ---
 
-# Y A T I R I M  &  Y O L  H A R İ T A S İ
+# YATIRIM & YOL HARİTASI
 **Uygulama Stratejisi**
 
 <figure class="chart chart-timeline">
@@ -190,10 +187,12 @@ Sistem 2. adıma kadar tamamen otonomdur. 4. adımda Webhook **LLM'i tamamen byp
 </svg>
 </figure>
 
-**01 · Doğrulama (0-1 Ay)** — Ajan lokalde sahte PNR'lar ile doğru "Kar" hesabını matematiksel olarak yaptığı kanıtlanır.
-**02 · Bulut Kuyruklama (1-2 Ay)** — Amazon SQS aktif. Rate-limit davranışı 429'lara göre ayarlanır.
-**03 · Operasyonel İletişim (2-3 Ay)** — Slack webhook butonları + Traffics bilet değiştirme uçları.
-**04 · Big Data Raporları (4+ Ay)** — Amazon QuickSight "Yield Dashboard" C-level panosu.
+<div class="phases">
+<div class="phase-row"><div class="phase-num">01 · DOĞRULAMA</div><div class="phase-desc"><span class="phase-time">0-1 ay</span> Ajan lokalde sahte PNR'lar ile doğru kâr hesabını matematiksel olarak yaptığını kanıtlar.</div></div>
+<div class="phase-row"><div class="phase-num">02 · BULUT KUYRUK</div><div class="phase-desc"><span class="phase-time">1-2 ay</span> Amazon SQS aktif. Rate-limit davranışı 429'lara göre ayarlanır.</div></div>
+<div class="phase-row accent"><div class="phase-num">03 · OPERASYON</div><div class="phase-desc"><span class="phase-time">2-3 ay</span> Slack webhook butonları + Traffics bilet değiştirme uçları.</div></div>
+<div class="phase-row done"><div class="phase-num">04 · BIG DATA</div><div class="phase-desc"><span class="phase-time">4+ ay</span> Amazon QuickSight "Yield Dashboard" C-level panosu.</div></div>
+</div>
 
 ---
 
