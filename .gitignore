@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# uv
+# (uv.lock IS checked in)
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Local artefacts
+.sessions/
+mock_pnrs.jsonl
+/tmp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# CDK / Node
+infra/node_modules/
+infra/cdk.out/
+infra/*.js
+infra/*.d.ts
+!infra/jest.config.js
+
+# Logs / coverage
+*.log
+.coverage
+htmlcov/
+coverage.xml

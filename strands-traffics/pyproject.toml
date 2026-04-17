@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strands-traffics"
+dynamic = ["version"]
+description = "Universal Traffics travel API tool for Strands Agents - search hotels, offers, bookings, regions, and more."
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    {name = "Hashtag World", email = "dev@hashtagworld.co"}
+]
+keywords = [
+    "traffics",
+    "strands",
+    "strands-agents",
+    "ai-agent",
+    "travel",
+    "hotels",
+    "booking",
+    "tourism",
+    "offers",
+    "flights",
+    "tour-operator",
+    "connector-api",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "strands-agents",
+    "requests>=2.28.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/mertozbas/strands-traffics"
+Repository = "https://github.com/mertozbas/strands-traffics"
+Issues = "https://github.com/mertozbas/strands-traffics/issues"
+Documentation = "https://github.com/mertozbas/strands-traffics#readme"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "black>=23.0",
+    "ruff>=0.1",
+    "responses>=0.23",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["strands_traffics*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "strands_traffics.__version__"}
+
+[tool.black]
+line-length = 120
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 120
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
