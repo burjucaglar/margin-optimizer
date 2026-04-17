@@ -49,3 +49,7 @@ infra/*.d.ts
 .coverage
 htmlcov/
 coverage.xml
+
+# Generated presentation PDFs are regenerated from presentation_*.md on demand;
+# but we do commit them so reviewers without a uv toolchain can read the deck.
+# (intentionally NOT ignored)
