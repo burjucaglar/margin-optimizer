@@ -2,7 +2,9 @@
 
 **B2B headless yield-management motoru** — acenteler için satılmış Pauschal rezervasyonlarda geceki flight-swap otomasyonu. Strands Agents + Bedrock Claude Haiku 4.5 + Traffics Connector API v3 + Slack HITL onay + Step Functions saga + Aurora Postgres.
 
-> **Durum:** Geliştirmeye hazır · **Bölge:** `eu-central-1` · **Son güncelleme:** 2026-04-17
+> **Durum:** Sprint 0 tamam · Sprint 1 kısmi (worker iskeleti + dry-run CLI çalışıyor, testler + ingest Sprint 2 bekliyor) · **Bölge:** `eu-central-1` · **Son güncelleme:** 2026-04-17
+
+Güncel uygulama durumu, kurulum ve çalıştırma komutları için: **[docs/progress/01_current_state_tr.md](docs/progress/01_current_state_tr.md)** · [EN](docs/progress/01_current_state.md)
 
 [English docs below](#english)
 
@@ -22,6 +24,7 @@ Her gece 02:00'de (Europe/Berlin), acentenin aktif Pauschal PNR'ları taranır. 
 | 4 | Repo Yapısı | [→](docs/4_repo_structure_tr.md) | [→](docs/4_repo_structure.md) |
 | 5 | Geliştirici Kurulumu | [→](docs/5_dev_setup_tr.md) | [→](docs/5_dev_setup.md) |
 | 6 | Prompt Tasarımı | [→](docs/6_prompt_design_tr.md) | [→](docs/6_prompt_design.md) |
+| — | **Geliştirme Durumu** (canlı) | [→](docs/progress/01_current_state_tr.md) | [→](docs/progress/01_current_state.md) |
 
 ## Teknoloji yığını (özet)
 
@@ -50,7 +53,7 @@ uv run python scripts/generate_mock_pnrs.py --count 5 --out /tmp/mock_pnrs.jsonl
 uv run python -m margin_optimizer.worker --from-file /tmp/mock_pnrs.jsonl --dry-run
 ```
 
-Detay: [Geliştirici kurulumu](docs/5_dev_setup_tr.md).
+Detay: [Geliştirici kurulumu](docs/5_dev_setup_tr.md) · [Güncel durum](docs/progress/01_current_state_tr.md).
 
 ## Mimari (yüksek seviye)
 
@@ -95,6 +98,8 @@ Tam mimari: [docs/2_technical_architecture_tr.md](docs/2_technical_architecture_
 <a id="english"></a>
 
 ## English
+
+**Current status:** Sprint 0 complete, Sprint 1 partial — the worker agent scaffold, Pydantic schemas, filter predicates, and dry-run CLI are in place; tests, the real ingest Lambda, and the Slack/saga/infra path are next. See **[docs/progress/01_current_state.md](docs/progress/01_current_state.md)** for the live state.
 
 MarginOptimizer is a B2B headless yield-management engine for travel agencies. It nightly scans every active Pauschal booking that hasn't departed, searches Traffics `/offers/{code}/alternativeFlights` for cheaper equivalent flights (same baggage, ±3h schedule, ≤ 4h layover, same class tier), computes the margin delta deterministically via `strands_tools.calculator`, and — only after a human approval in Slack — mutates the booking via a Step Functions saga that calls Traffics `PATCH /bookings/{id}` with full rollback. Successful mutations land in an Aurora Postgres `yield_events` table feeding a QuickSight dashboard and a Monday 08:00 CET SES PDF.
 
